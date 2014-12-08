@@ -3,20 +3,42 @@ fliper
 
 基于createjs实现的翻页类
 
-在使用这个类之前，你需要引用adobe提供的createjs框架下的类包
-
-### Designer Templates
-We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.
-
+### 依赖的类包
+你需要在html的项目下，引入createjs的以下三个类
 ```
-$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+easeljs.js
+preloadjs.js
+tweenjs.js
 ```
 
+### 使用方法
 
-### Authors and Contributors
-You can @mention a GitHub username to generate a link to their profile. The resulting `<a>` element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (@defunkt), PJ Hyett (@pjhyett), and Tom Preston-Werner (@mojombo) founded GitHub.
+每一个独立的页面都是一个FliperSheet
+首先创建首页
+```
+var sheet = new createjs.FliperSheet();
+```
 
-### Support or Contact
-Having trouble with Pages? Check out the documentation at https://help.github.com/pages or contact support@github.com and we’ll help you sort it out.
+更多的页面可以像这样创建：
+```
+var sheet2 = new createjs.FliperSheet(sheet);
+var sheet3 = new createjs.FliperSheet(sheet2);
+var sheet4 = new createjs.FliperSheet(sheet3);
+……
+```
+
+创建一个全局fliper，并传入首页和舞台
+```
+var fliper = new createjs.Fliper(sheet, stage);
+```
+你可以设置翻页的效果
+```
+fliper.turnEffect = "scanning";
+```
+
+你可以这样执行翻页
+```
+fliper.turnPrev();
+fliper.turnNext();
+```
+
